@@ -5,17 +5,18 @@ using namespace std;
 //  Param 1: Directory to check (defaults to working directory)
 int main(int argc, char *argv[]) {
 
-    // Stat
+    // Stat (path properties)
     struct stat sb;
 
     // Directory to check
-    const char* targetDir; // from unistd.h
+    const char* targetDir;
 
+    // Check first arg
     if (argc > 1) {
         // (optional) Manually provide the target directory from param
         targetDir = argv[1];
 
-        // Check if this is a directory
+        // Check if this path exists
         if (stat(targetDir, &sb) == -1) {
             cout << "The given target directory does not exist." << endl;
             return -1;
@@ -24,8 +25,20 @@ int main(int argc, char *argv[]) {
     }
     else {
         // Use the current working directory if param not provided
-        targetDir = get_current_dir_name();
+        targetDir = get_current_dir_name(); // from unistd.h
         cout << "Current working dir: " << targetDir << endl;
+    }
+
+    // Check if this path is a directory
+    switch (sb.st_mode & S_IFMT) {
+        case S_IFDIR:
+            // Do directory stuff
+            cout << "This is a directory" << endl;
+            break;
+        case S_IFREG:
+            // Just print out the file
+            cout << "This is a file" << endl;
+            break;
     }
 
     return 0;
