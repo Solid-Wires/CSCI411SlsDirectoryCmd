@@ -31,3 +31,8 @@ src_comp: src/*.cc
 # Program binary executable compilation
 program: src_comp
 	g++ $(OBJ_DIR)/*.o -o $(BIN_DIR)/$(BIN)
+
+.PHONY: clean
+clean:
+	rm -rf $(OBJ_DIR)
+	rm -rf $(BIN_DIR)
