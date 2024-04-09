@@ -29,14 +29,19 @@ int main(int argc, char *argv[]) {
     }
 
     // Check if this path is a directory
+    // TODO: What to do if it's a linked file?
     switch (sb.st_mode & S_IFMT) {
-        case S_IFDIR:
+        case S_IFDIR: // Directory
             // Do directory stuff
             cout << "This is a directory" << endl;
             break;
-        case S_IFREG:
+        case S_IFREG: // Regular File
             // Just print out the file
             cout << "This is a file" << endl;
+            break;
+        default:
+            // Anything else is unsupported
+            cout << "Unsupported" << endl;
             break;
     }
 
