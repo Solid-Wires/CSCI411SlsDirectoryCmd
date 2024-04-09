@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
         targetDir = argv[1];
 
         // Check if this is a directory
-        if (stat(targetDir, sb) == 0) {
+        if (stat(targetDir, &sb) == 0) {
             cout << "The given target directory does not exist." << endl;
             return -1;
         }
