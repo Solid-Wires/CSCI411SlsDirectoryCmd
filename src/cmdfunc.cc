@@ -44,4 +44,5 @@ const char* DisplayPerms(mode_t st_mode) {
     //switch(st_mode & SR_IRWXU) {
     //    case 
     //}
+    return out;
 }
