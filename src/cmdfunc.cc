@@ -43,7 +43,7 @@ string DisplayPerms(mode_t st_mode) {
     char permFlags[10] = "---------"; 
     
     // Check permissions for user/owner
-    switch(st_mode & S_IRWXU) {
+    switch(st_mode | S_IRWXU) {
         case S_IRUSR:
             permFlags[0] = 'r';
         case S_IWUSR:
@@ -52,7 +52,7 @@ string DisplayPerms(mode_t st_mode) {
             permFlags[2] = 'x';
     }
     // Check permissions for group
-    switch(st_mode & S_IRWXG) {
+    switch(st_mode | S_IRWXG) {
         case S_IRGRP:
             permFlags[3] = 'r';
         case S_IWGRP:
@@ -61,7 +61,7 @@ string DisplayPerms(mode_t st_mode) {
             permFlags[5] = 'x';
     }
     // Check permissions for others
-    switch(st_mode & S_IRWXO) {
+    switch(st_mode | S_IRWXO) {
         case S_IROTH:
             permFlags[6] = 'r';
         case S_IWOTH:
