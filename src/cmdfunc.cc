@@ -23,8 +23,8 @@ void WriteDirContents(const char* path, stringstream *ss) {
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
         *ss << left << setfill(' ');
         *ss << setw(6) << TagDirectory(dp->d_type);
-        *ss << setw(20) << DisplayPerms(sb.st_mode);
-        *ss << setw(6) << dp->d_name;
+        *ss << setw(12) << DisplayPerms(sb.st_mode);
+        *ss << setw(12) << dp->d_name;
         *ss << setw(6) << sb.st_size;
         *ss << setw(20) << ctime(&sb.st_mtime);
         *ss << endl;
