@@ -10,4 +10,4 @@
 #include <time.h>
 
 // Function prototypes
-void WriteContents(const char* path, std::stringstream *ss);
+void WriteDirContents(const char* path, std::stringstream *ss);

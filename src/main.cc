@@ -32,8 +32,11 @@ int main(int argc, char *argv[]) {
     switch (sb.st_mode & S_IFMT) {
         case S_IFDIR: // Directory
             {
+                // Start a string stream, write contents of information into it, then
+                //  print out the string stream.
                 stringstream ss;
-                WriteContents(targetDir, &ss);
+                WriteDirContents(targetDir, &ss);
+                cout << ss.str() << endl;
                 break;
             }
         default: // Anything
