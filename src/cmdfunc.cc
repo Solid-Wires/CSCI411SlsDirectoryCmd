@@ -1,6 +1,9 @@
 #include "../inc/common.h"
 using namespace std;
 
+// Function prototypes here
+const char* TagDirectory(unsigned char d_type);
+
 // Main function of the command that writes the contents of everything in a directory into a string stream.
 //  Parameters:
 //      path - The path of the directory to list contents.
@@ -10,7 +13,6 @@ void WriteDirContents(const char* path, stringstream *ss) {
 
     // Custom struct describing information about each listed file
     struct finfo {
-        const char* f_isdir;
         const char* f_perms;
         const char* f_name;
         int f_size;
@@ -23,17 +25,19 @@ void WriteDirContents(const char* path, stringstream *ss) {
     while (dp = readdir(dir)) { // Read each file in this given dir
         // Retrieve what is needed to be described
         finfo i;
-        switch(dp->d_type) {
-            case DT_DIR:
-                // If this is a directory, tag this as a DIR
-                i.f_isdir = "DIR";
-                break;
-            default:
-                i.f_isdir = "";
-        }
         i.f_name = dp->d_name;
-        *ss << i.f_isdir << '\t' << i.f_name << '\t' << endl;
+        *ss << TagDirectory(dp->d_type) << '\t' << i.f_name << '\t' << endl;
     }
     // Done listing the dir
     closedir(dir);
+}
+
+// If the given type is a directory according to dirent.h, return the DIR tag
+//  Otherwise, return an empty string
+const char* TagDirectory(unsigned char d_type) {
+    switch(dp->d_type) {
+        case DT_DIR:
+            return "DIR";
+    }
+    return "";
 }
