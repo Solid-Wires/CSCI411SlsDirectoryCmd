@@ -22,7 +22,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
         const char* permFlags;
-        permFlags = DisplayPerms(sb.st_mode, &permFlags)
+        permFlags = DisplayPerms(sb.st_mode, permFlags)
         *ss << TagDirectory(dp->d_type) << permFlags << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << ctime(&sb.st_mtime) << endl;
     }
     // Done listing the dir
