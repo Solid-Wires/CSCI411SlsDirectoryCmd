@@ -48,7 +48,7 @@ string DisplayPerms(mode_t st_mode) {
             permFlags[0] = 'r';
         case st_mode & S_IWUSR:
             permFlags[1] = 'w';
-        case S_IXUSR:
+        case st_mode & S_IXUSR:
             permFlags[2] = 'x';
     }
     // Check permissions for group
