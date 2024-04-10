@@ -21,7 +21,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
         string targetPath((string)path + '/' + dp->d_name); // Stat requires a path to the file. Luckily, we already kind of know it here
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
-        *ss << TagDirectory(dp->d_type) << '\t' << DisplayPerms(sb.st_mode) << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << ctime(&sb.st_mtime) << endl;
+        *ss << TagDirectory(dp->d_type) << '\v' << DisplayPerms(sb.st_mode) << '\v' << dp->d_name << '\v' << sb.st_size << '\v' << ctime(&sb.st_mtime) << endl;
     }
     // Done listing the dir
     closedir(dir);
@@ -74,5 +74,6 @@ string DisplayPerms(mode_t st_mode) {
     if (st_mode & S_IXOTH) {
         permFlags[8] = 'x';
     }
+
     return (string)permFlags;
 }
