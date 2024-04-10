@@ -39,7 +39,7 @@ const char* TagDirectory(unsigned char d_type) {
         case DT_DIR:
             return "DIR";
     }
-    return "";
+    return " ";
 }
 
 // Display all permissions that the user/owner, group, and others have with this file, in that order.
