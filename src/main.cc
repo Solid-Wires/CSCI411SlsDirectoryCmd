@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Check if this path is a directory
-    switch (sb.st_mode & S_IFMT) { // S_IFMT looks specifically for the file type
+    switch (sb.st_mode & S_IFMT) { // S_IFMT bit defines specifically the file type
         case S_IFDIR: // Directory
             {
                 // Start a string stream, write contents of information into it, then
