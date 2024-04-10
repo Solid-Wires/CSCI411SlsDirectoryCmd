@@ -22,10 +22,10 @@ void WriteDirContents(const char* path, stringstream *ss) {
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
         *ss << TagDirectory(dp->d_type);
-        *ss << setw(10) << DisplayPerms(sb.st_mode);
-        *ss << setw(10) << dp->d_name;
-        *ss << setw(10) << sb.st_size;
-        *ss << setw(10) << ctime(&sb.st_mtime);
+        *ss << setw(5) << DisplayPerms(sb.st_mode);
+        *ss << setw(5) << dp->d_name;
+        *ss << setw(5) << sb.st_size;
+        *ss << setw(5) << ctime(&sb.st_mtime);
         *ss << endl;
     }
     // Done listing the dir
