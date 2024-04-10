@@ -10,7 +10,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
 
     // Custom struct describing information about each listed file
     struct finfo {
-        unsigned char f_type;
+        char* f_isdir;
         char* f_perms;
         char* f_name;
         int f_size;
@@ -23,9 +23,14 @@ void WriteDirContents(const char* path, stringstream *ss) {
     while (dp = readdir(dir)) { // Read each file in this given dir
         // Retrieve what is needed to be described
         finfo i;
-        i.f_type = dp->d_type;
+        switch(dp->d_type) {
+            case DT_DIR:
+                // If this is a directory, tag this as a DIR
+                i.f_isdir = "DIR";
+                break;
+        }
         i.f_name = dp->d_name;
-        *ss << i.f_type << '\t' << i.f_name << '\t' << endl;
+        *ss << i.f_isdir << '\t' << i.f_name << '\t' << endl;
     }
     // Done listing the dir
     closedir(dir);
