@@ -17,10 +17,10 @@ void WriteDirContents(const char* path, stringstream *ss) {
     while (dp = readdir(dir)) { // Read each file in this given dir
         // Retrieve what is needed to be described
         //  And write it into the stream
-        string targetPath((string)path + '/' + dp->d_name);
+        string targetPath((string)path + '/' + dp->d_name); // Stat requires a path to the file. Luckily, we already kind of know it here
         struct stat sb;
-        stat(targetPath.c_str(), &sb);
-        *ss << TagDirectory(dp->d_type) << '\t' << dp->d_name << '\t' << sb.st_size << endl;
+        stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
+        *ss << TagDirectory(dp->d_type) << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << sb.st_mtime << endl;
     }
     // Done listing the dir
     closedir(dir);
