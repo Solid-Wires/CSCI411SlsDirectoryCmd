@@ -21,13 +21,13 @@ void WriteDirContents(const char* path, stringstream *ss) {
         string targetPath((string)path + '/' + dp->d_name); // Stat requires a path to the file. Luckily, we already kind of know it here
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
-        *ss << setfill(' ');
-        *ss << TagDirectory(dp->d_type);
-        *ss << setw(6) << DisplayPerms(sb.st_mode);
-        *ss << setw(6) << dp->d_name;
-        *ss << setw(6) << sb.st_size;
-        *ss << setw(6) << ctime(&sb.st_mtime);
-        *ss << endl;
+        cout << setfill(' ');
+        cout << TagDirectory(dp->d_type);
+        cout << setw(6) << DisplayPerms(sb.st_mode);
+        cout << setw(6) << dp->d_name;
+        cout << setw(6) << sb.st_size;
+        cout << setw(6) << ctime(&sb.st_mtime);
+        cout << endl;
     }
     // Done listing the dir
     closedir(dir);
