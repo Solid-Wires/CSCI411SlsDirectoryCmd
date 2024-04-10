@@ -40,7 +40,7 @@ const char* TagDirectory(unsigned char d_type) {
 // Display all permissions that the user/owner, group, and others have with this file, in that order.
 const char* DisplayPerms(mode_t st_mode) {
     // The output string is 9 characters long.
-    const char out[9] = "---------"; 
+    const char out[10] = "---------"; 
     //switch(st_mode & SR_IRWXU) {
     //    case 
     //}
