@@ -22,10 +22,10 @@ void WriteDirContents(const char* path, stringstream *ss) {
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
         *ss << TagDirectory(dp->d_type);
-        *ss << setw(10) << DisplayPerms(sb.st_mode);
-        *ss << setw(10) << dp->d_name;
-        *ss << setw(10) << sb.st_size;
-        *ss << setw(20) << ctime(&sb.st_mtime);
+        *ss << '\t' << DisplayPerms(sb.st_mode);
+        *ss << '\t' << dp->d_name;
+        *ss << '\t' << sb.st_size;
+        *ss << '\t' << ctime(&sb.st_mtime);
         *ss << endl;
     }
     // Done listing the dir
@@ -39,7 +39,7 @@ const char* TagDirectory(unsigned char d_type) {
         case DT_DIR:
             return "DIR";
     }
-    return " ";
+    return "";
 }
 
 // Display all permissions that the user/owner, group, and others have with this file, in that order.
