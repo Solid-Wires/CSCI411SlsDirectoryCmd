@@ -2,7 +2,7 @@
 using namespace std;
 
 // Entry
-//  Param 1: Directory to check (defaults to working directory)
+//  Optional Param 1: Directory to check (defaults to working directory)
 int main(int argc, char *argv[]) {
 
     // Stat (path stats)
@@ -24,13 +24,13 @@ int main(int argc, char *argv[]) {
     }
     // Check if this path exists (and retrieve path stats)
     if (stat(targetDir, &sb) == -1) {
-        cout << "The given target directory does not exist." << endl;
+        cout << "The given target directory cannot be found." << endl;
         return -1;
     }
 
     // Check if this path is a directory
-    switch (sb.st_mode & S_IFMT) { // S_IFMT bit defines specifically the file type
-        case S_IFDIR: // Directory
+    switch (sb.st_mode & S_IFMT) { // S_IFMT bit Looks specifically into the file type
+        case S_IFDIR: // Directory bit
             {
                 // Start a string stream, write contents of information into it, then
                 //  print out the string stream.
