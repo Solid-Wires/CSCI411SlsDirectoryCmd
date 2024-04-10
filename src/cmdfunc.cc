@@ -20,7 +20,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
         string targetPath((string)path + '/' + dp->d_name); // Stat requires a path to the file. Luckily, we already kind of know it here
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
-        *ss << TagDirectory(dp->d_type) << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << ctime(&sb.st_mtime) << endl;
+        *ss << TagDirectory(dp->d_type) << DisplayPerms(sb.st_mode) << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << ctime(&sb.st_mtime) << endl;
     }
     // Done listing the dir
     closedir(dir);
@@ -34,4 +34,15 @@ const char* TagDirectory(unsigned char d_type) {
             return "DIR";
     }
     return "";
+}
+
+// Display all permissions that the user/owner, group, and others have with this file, in that order.
+const char[9] DisplayPerms(mode_t st_mode) {
+    const char[9] out; // The output string is 9 characters long.
+    for (int c; c < out.length; c++) {
+        out[c] = '-';
+    }
+    //switch(st_mode & SR_IRWXU) {
+    //    case 
+    //}
 }
