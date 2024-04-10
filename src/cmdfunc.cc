@@ -3,7 +3,7 @@ using namespace std;
 
 // Function prototypes here
 const char TagDirectory(unsigned char d_type);
-const char DisplayPerms(mode_t st_mode);
+const char DisplayPerms(mode_t st_mode, const char* out);
 
 // Main function of the command that writes the contents of everything in a directory into a string stream.
 //  Parameters:
@@ -21,7 +21,9 @@ void WriteDirContents(const char* path, stringstream *ss) {
         string targetPath((string)path + '/' + dp->d_name); // Stat requires a path to the file. Luckily, we already kind of know it here
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
-        *ss << TagDirectory(dp->d_type) << DisplayPerms(sb.st_mode) << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << ctime(&sb.st_mtime) << endl;
+        const char* permFlags;
+        permFlags = DisplayPerms(sb.st_mode, &permFlags)
+        *ss << TagDirectory(dp->d_type) << permFlags << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << ctime(&sb.st_mtime) << endl;
     }
     // Done listing the dir
     closedir(dir);
@@ -38,11 +40,11 @@ const char* TagDirectory(unsigned char d_type) {
 }
 
 // Display all permissions that the user/owner, group, and others have with this file, in that order.
-char* DisplayPerms(mode_t st_mode) {
+void DisplayPerms(mode_t st_mode, const char* out) {
     // The output string is 9 characters long.
-    char out[10] = "---------"; 
+    char permFlags[10] = "---------"; 
     //switch(st_mode & SR_IRWXU) {
     //    case 
     //}
-    return out;
+    *out = permFlags;
 }
