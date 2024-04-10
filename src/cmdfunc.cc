@@ -10,7 +10,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
 
     // Custom struct describing information about each listed file
     struct finfo {
-        char* f_type;
+        unsigned char f_type;
         char* f_perms;
         char* f_name;
         int f_size;
