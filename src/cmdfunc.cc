@@ -12,6 +12,6 @@ void WriteDirContents(const char* path, stringstream *ss) {
     struct dirent *dp; // Information we retrieve from readdir
     DIR *dir = opendir(path); // The provided dir
     while (dp = readdir(dir)) { // Read each file in this given dir
-        ss << (string)dp->d_name << endl;
+        *ss << dp->d_name << endl;
     }
 }
