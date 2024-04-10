@@ -10,11 +10,11 @@ void WriteDirContents(const char* path, stringstream *ss) {
 
     // Custom struct describing information about each listed file
     struct finfo {
-        char* f_isdir;
-        char* f_perms;
-        char* f_name;
+        const char* f_isdir;
+        const char* f_perms;
+        const char* f_name;
         int f_size;
-        char* last_modified;
+        const char* last_modified;
     };
 
     // Open the directory with dirent.h
