@@ -11,22 +11,13 @@ const char* TagDirectory(unsigned char d_type);
 //      ss - the string stream reference to write the output into.
 void WriteDirContents(const char* path, stringstream *ss) {
 
-    // Custom struct describing information about each listed file
-    struct finfo {
-        const char* f_perms;
-        const char* f_name;
-        int f_size;
-        const char* last_modified;
-    };
-
     // Open the directory with dirent.h
     struct dirent *dp; // Information we retrieve from readdir
     DIR *dir = opendir(path); // The provided dir
     while (dp = readdir(dir)) { // Read each file in this given dir
         // Retrieve what is needed to be described
-        finfo i;
-        i.f_name = dp->d_name;
-        *ss << TagDirectory(dp->d_type) << '\t' << i.f_name << '\t' << endl;
+        //  And write it into the stream
+        *ss << TagDirectory(dp->d_type) << '\t' << dp->d_name << '\t' << endl;
     }
     // Done listing the dir
     closedir(dir);
