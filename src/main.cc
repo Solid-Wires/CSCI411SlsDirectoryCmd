@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
                 //  print out the string stream.
                 stringstream ss;
                 WriteDirContents(targetDir, &ss);
-                cout << setw(4) << ss.str();
+                cout << ss.str();
                 break;
             }
         default: // Anything
