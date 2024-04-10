@@ -5,7 +5,7 @@
 #include <fstream>
 #include <unistd.h>
 #include <sstream>
-#include <types.h>
+#include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
 #include <time.h>
