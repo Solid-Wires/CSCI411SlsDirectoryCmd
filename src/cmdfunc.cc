@@ -2,8 +2,8 @@
 using namespace std;
 
 // Function prototypes here
-const char TagDirectory(unsigned char d_type);
-const char DisplayPerms(mode_t st_mode, const char* out);
+const char* TagDirectory(unsigned char d_type);
+void DisplayPerms(mode_t st_mode, const char* out);
 
 // Main function of the command that writes the contents of everything in a directory into a string stream.
 //  Parameters:
