@@ -3,7 +3,7 @@ using namespace std;
 
 // Function prototypes here
 const char* TagDirectory(unsigned char d_type);
-const char[9] DisplayPerms(mode_t st_mode);
+const char* DisplayPerms(mode_t st_mode);
 
 // Main function of the command that writes the contents of everything in a directory into a string stream.
 //  Parameters:
@@ -38,8 +38,8 @@ const char* TagDirectory(unsigned char d_type) {
 }
 
 // Display all permissions that the user/owner, group, and others have with this file, in that order.
-const char[9] DisplayPerms(mode_t st_mode) {
-    const char[9] out; // The output string is 9 characters long.
+const char* DisplayPerms(mode_t st_mode) {
+    const char out[9]; // The output string is 9 characters long.
     for (int c; c < out.length; c++) {
         out[c] = '-';
     }
