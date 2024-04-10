@@ -28,6 +28,8 @@ void WriteDirContents(const char* path, stringstream *ss) {
                 // If this is a directory, tag this as a DIR
                 i.f_isdir = "DIR";
                 break;
+            default:
+                i.f_isdir = "";
         }
         i.f_name = dp->d_name;
         *ss << i.f_isdir << '\t' << i.f_name << '\t' << endl;
