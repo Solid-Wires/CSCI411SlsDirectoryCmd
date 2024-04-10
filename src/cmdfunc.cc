@@ -25,7 +25,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
         *ss << setw(6) << TagDirectory(dp->d_type);
         *ss << setw(12) << DisplayPerms(sb.st_mode);
         *ss << setw(16) << dp->d_name;
-        *ss << setw(6) << sb.st_size;
+        *ss << setw(6) << ' ' << sb.st_size;
         *ss << setw(24) << ctime(&sb.st_mtime);
         *ss << endl;
     }
