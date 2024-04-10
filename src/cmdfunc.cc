@@ -21,6 +21,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
         string targetPath((string)path + '/' + dp->d_name); // Stat requires a path to the file. Luckily, we already kind of know it here
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
+        *ss << setfill(' ');
         *ss << TagDirectory(dp->d_type);
         *ss << setw(4) << DisplayPerms(sb.st_mode);
         *ss << '\t' << dp->d_name;
