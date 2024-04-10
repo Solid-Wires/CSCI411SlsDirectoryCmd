@@ -35,7 +35,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
 // If the given type is a directory according to dirent.h, return the DIR tag
 //  Otherwise, return an empty string
 const char* TagDirectory(unsigned char d_type) {
-    switch(dp->d_type) {
+    switch(d_type) {
         case DT_DIR:
             return "DIR";
     }
