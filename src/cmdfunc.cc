@@ -2,5 +2,5 @@
 using namespace std;
 
 void WriteContents(const char* path, stringstream *ss) {
-    
+    print(path);
 }

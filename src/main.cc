@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
         case S_IFDIR: // Directory
             {
                 stringstream ss;
-                cout << "This is a directory" << endl;
+                WriteContents(targetDir, &ss);
                 break;
             }
         default: // Anything
