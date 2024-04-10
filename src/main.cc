@@ -35,13 +35,9 @@ int main(int argc, char *argv[]) {
             // Do directory stuff
             cout << "This is a directory" << endl;
             break;
-        case S_IFREG: // Regular File
-            // Just print out the file
-            cout << "This is a file" << endl;
-            break;
-        default:
-            // Anything else is unsupported
-            cout << "Unsupported" << endl;
+        default: // Anything
+            // Just print out the path of whateve is there (this is what ls does)
+            cout << "This is anything" << endl;
             break;
     }
 
