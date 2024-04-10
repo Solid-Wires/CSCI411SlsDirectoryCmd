@@ -21,7 +21,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
         string targetPath((string)path + '/' + dp->d_name); // Stat requires a path to the file. Luckily, we already kind of know it here
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
-        *ss << TagDirectory(dp->d_type) << '\t' << DisplayPerms(sb.st_mode) << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << ctime(&sb.st_mtime) << endl;
+        *ss << TagDirectory(dp->d_type) << '\t' << DisplayPerms(&sb.st_mode) << '\t' << dp->d_name << '\t' << sb.st_size << '\t' << ctime(&sb.st_mtime) << endl;
     }
     // Done listing the dir
     closedir(dir);
@@ -38,12 +38,12 @@ const char* TagDirectory(unsigned char d_type) {
 }
 
 // Display all permissions that the user/owner, group, and others have with this file, in that order.
-string DisplayPerms(mode_t st_mode) {
+string DisplayPerms(mode_t *st_mode) {
     // The output string is 9 characters long.
     char permFlags[10] = "---------"; 
     
     // Check permissions for user/owner
-    switch(st_mode | S_IRWXU) {
+    switch(st_mode & S_IRWXU) {
         case S_IRUSR:
             permFlags[0] = 'r';
         case S_IWUSR:
@@ -52,7 +52,7 @@ string DisplayPerms(mode_t st_mode) {
             permFlags[2] = 'x';
     }
     // Check permissions for group
-    switch(st_mode | S_IRWXG) {
+    switch(st_mode & S_IRWXG) {
         case S_IRGRP:
             permFlags[3] = 'r';
         case S_IWGRP:
@@ -61,7 +61,7 @@ string DisplayPerms(mode_t st_mode) {
             permFlags[5] = 'x';
     }
     // Check permissions for others
-    switch(st_mode | S_IRWXO) {
+    switch(st_mode & S_IRWXO) {
         case S_IROTH:
             permFlags[6] = 'r';
         case S_IWOTH:
