@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
     // Check if this path is a directory
     switch (sb.st_mode & S_IFMT) {
         case S_IFDIR: // Directory
-            stringstream ss('');
+            stringstream ss("");
             cout << "This is a directory" << endl;
             break;
         default: // Anything
