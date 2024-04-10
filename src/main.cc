@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         // (optional) Manually provide the target directory from param
         targetDir = argv[1];
-        cout << "Provided target dir: " << targetDir << endl;
+        cout << "Provided target path: " << targetDir << endl;
     }
     else {
         // Use the current working directory if param not provided
@@ -29,15 +29,14 @@ int main(int argc, char *argv[]) {
     }
 
     // Check if this path is a directory
-    // TODO: What to do if it's a linked file?
     switch (sb.st_mode & S_IFMT) {
         case S_IFDIR: // Directory
-            // Do directory stuff
+            stringstream ss('');
             cout << "This is a directory" << endl;
             break;
         default: // Anything
-            // Just print out the path of whateve is there (this is what ls does)
-            cout << "This is anything" << endl;
+            // Just print out the path of whatever is there (this is what ls does)
+            cout << targetDir << endl;
             break;
     }
 
