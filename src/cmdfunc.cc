@@ -44,29 +44,29 @@ string DisplayPerms(mode_t st_mode) {
     
     // Check permissions for user/owner
     switch(st_mode & S_IRWXU) {
-        case S_IRUSR:
+        case st_mode & S_IRUSR:
             permFlags[0] = 'r';
-        case S_IWUSR:
+        case st_mode & S_IWUSR:
             permFlags[1] = 'w';
         case S_IXUSR:
             permFlags[2] = 'x';
     }
     // Check permissions for group
     switch(st_mode & S_IRWXG) {
-        case S_IRGRP:
+        case st_mode & S_IRGRP:
             permFlags[3] = 'r';
-        case S_IWGRP:
+        case st_mode & S_IWGRP:
             permFlags[4] = 'w';
-        case S_IXGRP:
+        case st_mode & S_IXGRP:
             permFlags[5] = 'x';
     }
     // Check permissions for others
     switch(st_mode & S_IRWXO) {
-        case S_IROTH:
+        case st_mode & S_IROTH:
             permFlags[6] = 'r';
-        case S_IWOTH:
+        case st_mode & S_IWOTH:
             permFlags[7] = 'w';
-        case S_IXOTH:
+        case st_mode & S_IXOTH:
             permFlags[8] = 'x';
     }
     return (string)permFlags;
