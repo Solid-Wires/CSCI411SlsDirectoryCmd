@@ -17,7 +17,9 @@ void WriteDirContents(const char* path, stringstream *ss) {
     while (dp = readdir(dir)) { // Read each file in this given dir
         // Retrieve what is needed to be described
         //  And write it into the stream
-        *ss << TagDirectory(dp->d_type) << '\t' << dp->d_name << '\t' << endl;
+        struct stat sb;
+        fstat(dp->d_ino);
+        *ss << TagDirectory(dp->d_type) << '\t' << dp->d_name << '\t' << sb.st_size << endl;
     }
     // Done listing the dir
     closedir(dir);
