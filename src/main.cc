@@ -31,9 +31,11 @@ int main(int argc, char *argv[]) {
     // Check if this path is a directory
     switch (sb.st_mode & S_IFMT) {
         case S_IFDIR: // Directory
-            stringstream ss("");
-            cout << "This is a directory" << endl;
-            break;
+            {
+                stringstream ss;
+                cout << "This is a directory" << endl;
+                break;
+            }
         default: // Anything
             // Just print out the path of whatever is there (this is what ls does)
             cout << targetDir << endl;
