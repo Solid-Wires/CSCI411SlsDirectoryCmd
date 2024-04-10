@@ -1,3 +1,6 @@
+// Name: Jared Whytsell
+// Purpose: Make a command that replicates what the ls command does on Linux.
+
 #include "../inc/common.h"
 using namespace std;
 

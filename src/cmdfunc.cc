@@ -1,3 +1,5 @@
+// This is where the bulk of the command's function is executed.
+
 #include "../inc/common.h"
 using namespace std;
 
