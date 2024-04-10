@@ -22,7 +22,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
         struct stat sb;
         stat(targetPath.c_str(), &sb); // Could use lstat, but the example seems to just use stat
         *ss << setfill('*');
-        *ss << TagDirectory(dp->d_type);
+        *ss << setw(6) << TagDirectory(dp->d_type);
         *ss << setw(6) << DisplayPerms(sb.st_mode);
         *ss << setw(6) << dp->d_name;
         *ss << setw(6) << sb.st_size;
