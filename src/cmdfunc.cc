@@ -2,8 +2,8 @@
 using namespace std;
 
 // Function prototypes here
-const char* TagDirectory(unsigned char d_type);
-const char* DisplayPerms(mode_t st_mode);
+const char TagDirectory(unsigned char d_type);
+const char DisplayPerms(mode_t st_mode);
 
 // Main function of the command that writes the contents of everything in a directory into a string stream.
 //  Parameters:
@@ -29,7 +29,7 @@ void WriteDirContents(const char* path, stringstream *ss) {
 
 // If the given type is a directory according to dirent.h, return the DIR tag
 //  Otherwise, return an empty string
-const char* TagDirectory(unsigned char d_type) {
+const char TagDirectory(unsigned char d_type) {
     switch(d_type) {
         case DT_DIR:
             return "DIR";
@@ -38,7 +38,7 @@ const char* TagDirectory(unsigned char d_type) {
 }
 
 // Display all permissions that the user/owner, group, and others have with this file, in that order.
-const char* DisplayPerms(mode_t st_mode) {
+const char DisplayPerms(mode_t st_mode) {
     // The output string is 9 characters long.
     const char out[10] = "---------"; 
     //switch(st_mode & SR_IRWXU) {
