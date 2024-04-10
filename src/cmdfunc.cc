@@ -14,5 +14,6 @@ void WriteDirContents(const char* path, stringstream *ss) {
     while (dp = readdir(dir)) { // Read each file in this given dir
         *ss << dp->d_name << endl;
     }
+    // Done listing the dir
     closedir(dir);
 }
